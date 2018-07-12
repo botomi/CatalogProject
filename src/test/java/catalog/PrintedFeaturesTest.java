@@ -38,7 +38,7 @@ public class PrintedFeaturesTest {
         new PrintedFeatures("Harry Potter",600, null);
     }
 
-    
+
     @Test
     public void testCreate() {
         PrintedFeatures audioFeatures = new PrintedFeatures("Harry Potter",600, Arrays.asList("J.K. Rowling","Someoneelse"));

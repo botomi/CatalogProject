@@ -19,7 +19,7 @@ public class CatalogItemTest {
                     new PrintedFeatures("Harry Potter",600,  Arrays.asList("J.K. Rowling"))
    );
 
-    
+
 
     @Test
     public void testGetFeaturesGetAudioContributors() {

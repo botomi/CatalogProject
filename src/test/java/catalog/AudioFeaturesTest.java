@@ -59,7 +59,7 @@ public class AudioFeaturesTest {
 
         assertThat(audioFeatures.getTitle(),is("Ride the Lightning"));
         assertThat(audioFeatures.getLength(), is(300));
-        
+
         assertThat(audioFeatures.getContributors().size(), is(2));
         assertThat(audioFeatures.getContributors().get(1), is ("Metallica"));
     }
