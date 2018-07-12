@@ -15,7 +15,6 @@ public class PrintedFeatures implements Feature {
         if (isEmpty(authors) || isBlank(title) || numberOfPages <= 0) {
             throw new IllegalArgumentException("Empty title");
         }
-        // kivételkezelés
         this.authors = authors;
         this.numberOfPages = numberOfPages;
         this.title = title;
@@ -27,7 +26,9 @@ public class PrintedFeatures implements Feature {
 
     @Override
     public List<String> getContributors() {
-        // kivételkezelés
+        if (isEmpty(authors)) {
+            throw new IllegalArgumentException("Authors must not be null or empty!");
+        }
         return authors;
     }
 

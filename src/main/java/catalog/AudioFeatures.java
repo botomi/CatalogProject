@@ -3,6 +3,9 @@ package catalog;
 import java.util.ArrayList;
 import java.util.List;
 
+import static catalog.Validators.isBlank;
+import static catalog.Validators.isEmpty;
+
 public class AudioFeatures implements Feature {
 
     private List<String> composer;
@@ -10,15 +13,19 @@ public class AudioFeatures implements Feature {
     private List<String> performers;
     private String title;
 
-    public AudioFeatures(List<String> composer, int length, String title) {
-        // kivételkezelés
-        this.composer = composer;
+    public AudioFeatures(String title, int length, List<String> performers) {
+        if (isBlank(title) || length <= 0 || isEmpty(performers)) {
+            throw new IllegalArgumentException("Empty title");
+        }
+        this.performers = performers;
         this.length = length;
         this.title = title;
     }
 
-    public AudioFeatures(List<String> composer, int length, List<String> performers, String title) {
-        // kivételkezelés
+    public AudioFeatures(String title, int length, List<String> performers, List<String> composer) {
+        if (isBlank(title) || length <= 0 || isEmpty(performers) || isEmpty(composer)) {
+            throw new IllegalArgumentException("Empty title");
+        }
         this.composer = composer;
         this.length = length;
         this.performers = performers;
@@ -27,8 +34,10 @@ public class AudioFeatures implements Feature {
 
     @Override
     public List<String> getContributors() {
-        // kivételkezelés
-        List<String> contributors = new ArrayList<>(composer);
+        List<String> contributors = new ArrayList<>();
+        if (!isEmpty(composer)) {
+            contributors.addAll(composer);
+        }
         contributors.addAll(performers);
         return contributors;
     }
