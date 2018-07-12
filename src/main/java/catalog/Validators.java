@@ -5,7 +5,7 @@ import java.util.List;
 public class Validators {
 
     public static boolean isBlank(String s) {
-        if (s == null || s.length() == 0) {
+        if (s == null || s.trim().length() == 0) {
             return true;
         }
         return false;
