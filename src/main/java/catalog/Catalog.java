@@ -3,6 +3,8 @@ package catalog;
 import java.util.ArrayList;
 import java.util.List;
 
+import static catalog.Validators.isBlank;
+
 public class Catalog {
 
     List<CatalogItem> catalogItems = new ArrayList<>();
@@ -18,6 +20,18 @@ public class Catalog {
     }
 
     public void deleteItemByRegistrationNumber(String registrationNumber) {
+        if (isBlank(registrationNumber)) {
+            throw new IllegalArgumentException("Registration number must not be empty or null!");
+        }
+        CatalogItem tmp = null;
+        for (CatalogItem catalogItem: catalogItems) {
+            if (catalogItem.getRegistrationNumber.equals(registrationNumber)) {
+                tmp = catalogItem;
+            }
+        }
+        if (tmp == null) {
+            throw new IllegalArgumentException("Registration number not found!");
+        }
 
 
 
@@ -33,10 +47,11 @@ public class Catalog {
     }
 
     public int getAllPageNumber() {
-
-
-
-        return 0;
+        int sum = 0;
+        for (CatalogItem catalogItem: getPrintedLibraryItems()) {
+            sum += catalogItem.numberOfPagesAtOneItem();
+        }
+        return sum;
     }
 
     public List<CatalogItem> getAudioLibraryItems() {
@@ -48,12 +63,11 @@ public class Catalog {
     }
 
     public int getFullLength() {
-
-
-
-
-
-        return 0;
+        int sum = 0;
+        for (CatalogItem catalogItem: getAudioLibraryItems()) {
+            sum += catalogItem.fullLengthAtOneItem();
+        }
+        return sum;
     }
 
     public List<CatalogItem> getPrintedLibraryItems() {
