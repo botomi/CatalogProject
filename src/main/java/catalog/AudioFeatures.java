@@ -3,9 +3,6 @@ package catalog;
 import java.util.ArrayList;
 import java.util.List;
 
-import static catalog.Validators.isBlank;
-import static catalog.Validators.isEmpty;
-
 public class AudioFeatures implements Feature {
 
     private List<String> composer;
@@ -14,7 +11,7 @@ public class AudioFeatures implements Feature {
     private String title;
 
     public AudioFeatures(String title, int length, List<String> performers) {
-        if (isBlank(title) || length <= 0 || isEmpty(performers)) {
+        if (Validators.isBlank(title) || length <= 0 || Validators.isEmpty(performers)) {
             throw new IllegalArgumentException("Empty title");
         }
         this.performers = performers;
@@ -23,7 +20,7 @@ public class AudioFeatures implements Feature {
     }
 
     public AudioFeatures(String title, int length, List<String> performers, List<String> composer) {
-        if (isBlank(title) || length <= 0 || isEmpty(performers) || isEmpty(composer)) {
+        if (Validators.isBlank(title) || length <= 0 || Validators.isEmpty(performers) || Validators.isEmpty(composer)) {
             throw new IllegalArgumentException("Empty title");
         }
         this.composer = composer;
@@ -35,7 +32,7 @@ public class AudioFeatures implements Feature {
     @Override
     public List<String> getContributors() {
         List<String> contributors = new ArrayList<>();
-        if (!isEmpty(composer)) {
+        if (!Validators.isEmpty(composer)) {
             contributors.addAll(composer);
         }
         contributors.addAll(performers);

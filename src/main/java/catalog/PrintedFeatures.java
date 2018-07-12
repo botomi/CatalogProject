@@ -2,9 +2,6 @@ package catalog;
 
 import java.util.List;
 
-import static catalog.Validators.isBlank;
-import static catalog.Validators.isEmpty;
-
 public class PrintedFeatures implements Feature {
 
     private List<String> authors;
@@ -12,7 +9,7 @@ public class PrintedFeatures implements Feature {
     private String title;
 
     public PrintedFeatures(String title, int numberOfPages, List<String> authors) {
-        if (isEmpty(authors) || isBlank(title) || numberOfPages <= 0) {
+        if (Validators.isEmpty(authors) || Validators.isBlank(title) || numberOfPages <= 0) {
             throw new IllegalArgumentException("Empty title");
         }
         this.authors = authors;
@@ -26,7 +23,7 @@ public class PrintedFeatures implements Feature {
 
     @Override
     public List<String> getContributors() {
-        if (isEmpty(authors)) {
+        if (Validators.isEmpty(authors)) {
             throw new IllegalArgumentException("Authors must not be null or empty!");
         }
         return authors;

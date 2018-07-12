@@ -6,12 +6,12 @@ import java.util.List;
 
 public class CatalogItem {
 
-    private List<Feature> features = new ArrayList<>();
+    private List<Feature> features;
     private final int price;
     private final String registrationNumber;
 
     public CatalogItem(String registrationNumber, int price, Feature... features) {
-        if (features.length < 1 || Validators.isBlank(registrationNumber) || price <= 0) {
+        if (features.length == 0 || Validators.isBlank(registrationNumber) || price <= 0) {
             throw new IllegalArgumentException("Parameter must be present!");
         }
         this.features = Arrays.asList(features);
@@ -33,7 +33,7 @@ public class CatalogItem {
 
     public int fullLengthAtOneItem() {
         int sum = 0;
-        for (Feature f : features) {
+        for (Feature f: features) {
             if (f instanceof AudioFeatures) {
                 sum += ((AudioFeatures) f).getLength();
             }
@@ -43,7 +43,7 @@ public class CatalogItem {
 
     public int numberOfPagesAtOneItem() {
         int sum = 0;
-        for (Feature f : features) {
+        for (Feature f: features) {
             if (f instanceof PrintedFeatures) {
                 sum += ((PrintedFeatures) f).getNumberOfPages();
             }
@@ -52,7 +52,7 @@ public class CatalogItem {
     }
 
     public boolean hasAudioFeature() {
-        for (Feature f : features) {
+        for (Feature f: features) {
             if (f instanceof AudioFeatures) {
                 return true;
             }
@@ -61,7 +61,7 @@ public class CatalogItem {
     }
 
     public boolean hasPrintedFeature() {
-        for (Feature f : features) {
+        for (Feature f: features) {
             if (f instanceof PrintedFeatures) {
                 return true;
             }
@@ -71,7 +71,7 @@ public class CatalogItem {
 
     public List<String> getContributors() {
         List<String> result = new ArrayList<>();
-        for (Feature f : features) {
+        for (Feature f: features) {
             result.addAll(f.getContributors());
         }
         return result;
@@ -79,7 +79,7 @@ public class CatalogItem {
 
     public List<String> getTitles() {
         List<String> result = new ArrayList<>();
-        for (Feature f : features) {
+        for (Feature f: features) {
         result.add(f.getTitle());
         }
         return result;
